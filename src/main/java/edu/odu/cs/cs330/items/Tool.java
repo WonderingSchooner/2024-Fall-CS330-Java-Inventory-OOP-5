@@ -80,6 +80,8 @@ public class Tool extends Equippable implements Item {
         }
 
         Tool rhsItem = (Tool) rhs;
+        if (this.hashCode() == rhsItem.hashCode())
+        {return true;}
 
         return false;
     }
@@ -106,6 +108,14 @@ public class Tool extends Equippable implements Item {
     @Override
     public String toString()
     {
-        return "String.format(FMT_STR, ...)";
+        return String.format(
+           FMT_STR,
+           this.getName(),
+           this.getDurability(),
+           this.getSpeed(),
+           this.getMaterial(),
+           this.getModifier(),
+           this.getModifierLevel()
+        );
     }
 }

@@ -1,6 +1,7 @@
 package edu.odu.cs.cs330.items.creation;
 
 import edu.odu.cs.cs330.items.Item;
+import edu.odu.cs.cs330.items.Tool;
 import edu.odu.cs.cs330.items.Armour;
 
 
@@ -22,14 +23,14 @@ public class ArmourCreation implements ItemCreationStrategy
     public Item fromDefaults()
     {
         // Return a **Default** Armour
-        return null;
+        return new Armour();
     }
 
     @Override
     public int requiredNumberOfValues()
     {
         // Replace the return value;
-        return 0;
+        return 7;
     }
 
     @SuppressWarnings({
@@ -39,7 +40,18 @@ public class ArmourCreation implements ItemCreationStrategy
     @Override
     public Item fromTokens(final String... tokens)
     {
-        return null;
+        int dur = Integer.parseInt(tokens[2]);
+        int def = Integer.parseInt(tokens[3]);
+        int lvl = Integer.parseInt(tokens[5]);
+        return new Armour(
+            tokens[0], 
+            dur, 
+            def, 
+            tokens[1], 
+            tokens[4], 
+            lvl, 
+            tokens[6]
+        );
     }
 
     @SuppressWarnings({
@@ -56,6 +68,14 @@ public class ArmourCreation implements ItemCreationStrategy
 
         Armour theOriginal = (Armour) original;
 
-        return null;
+        return new Armour(
+            theOriginal.getName(),
+            theOriginal.getDurability(),
+            theOriginal.getDefense(),
+            theOriginal.getMaterial(),
+            theOriginal.getModifier(),
+            theOriginal.getModifierLevel(),
+            theOriginal.getElement()
+        );
     }
 }

@@ -22,14 +22,14 @@ public class ToolCreation implements ItemCreationStrategy
     public Item fromDefaults()
     {
         // Return a **Default** Tool
-        return null;
+        return new Tool();
     }
 
     @Override
     public int requiredNumberOfValues()
     {
         // Replace the return value;
-        return 0;
+        return 6;
     }
 
     @SuppressWarnings({
@@ -47,8 +47,17 @@ public class ToolCreation implements ItemCreationStrategy
             ...
         );
         */
-
-        return new Tool();
+        int dur = Integer.parseInt(tokens[2]);
+        int spd = Integer.parseInt(tokens[3]);
+        int lvl = Integer.parseInt(tokens[5]);
+        return new Tool(
+            tokens[0],
+            dur,
+            spd,
+            tokens[1],
+            tokens[4],
+            lvl
+        );
     }
 
     @SuppressWarnings({
@@ -65,6 +74,13 @@ public class ToolCreation implements ItemCreationStrategy
 
         Tool theOriginal = (Tool) original;
 
-        return null;
+        return new Tool(
+            theOriginal.getName(),
+            theOriginal.getDurability(),
+            theOriginal.getSpeed(),
+            theOriginal.getMaterial(),
+            theOriginal.getModifier(),
+            theOriginal.getModifierLevel()
+        );
     }
 }
